@@ -5,3 +5,7 @@ spring:
 server:
   port: 8803
 
+eureka:
+ client:
+   fetchRegistry: true
+   registerWithEureka: true

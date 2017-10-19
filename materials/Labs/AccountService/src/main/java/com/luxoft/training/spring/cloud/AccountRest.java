@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 public class AccountRest {
@@ -29,5 +30,14 @@ public class AccountRest {
         return accountDAO.addBalance(id, sum.abs());
     }
 
-//     checkout
+    @RequestMapping("/checkout/{id}")
+    public Boolean checkout(@PathVariable Integer id, @RequestParam BigDecimal sum){
+        return accountDAO.addBalance(id,sum.abs().negate());
+    }
+
+    @RequestMapping("/get/{clientId}")
+    public List<AccountEntity> get(@PathVariable Integer clientId){
+        return accountRepository.findByClientId(clientId);
+
+    }
 }
