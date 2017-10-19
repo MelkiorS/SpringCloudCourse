@@ -3,6 +3,20 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SpringCloudCourse.iml" filepath="$PROJECT_DIR$/SpringCloudCourse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/AccountService/account-service.iml" filepath="$PROJECT_DIR$/materials/Labs/AccountService/account-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/AuthService/auth.iml" filepath="$PROJECT_DIR$/materials/Labs/AuthService/auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/CardService/card-service.iml" filepath="$PROJECT_DIR$/materials/Labs/CardService/card-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/ClientService/client-service.iml" filepath="$PROJECT_DIR$/materials/Labs/ClientService/client-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/Common/common.iml" filepath="$PROJECT_DIR$/materials/Labs/Common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/ConfigServer/config-server.iml" filepath="$PROJECT_DIR$/materials/Labs/ConfigServer/config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/Dashboard/dashboard.iml" filepath="$PROJECT_DIR$/materials/Labs/Dashboard/dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/Eureka/eureka.iml" filepath="$PROJECT_DIR$/materials/Labs/Eureka/eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/HistoryService/history-service.iml" filepath="$PROJECT_DIR$/materials/Labs/HistoryService/history-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/ProcessingService/processing-service.iml" filepath="$PROJECT_DIR$/materials/Labs/ProcessingService/processing-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/spring-cloud.iml" filepath="$PROJECT_DIR$/materials/Labs/spring-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/TurbineServer/turbine-server.iml" filepath="$PROJECT_DIR$/materials/Labs/TurbineServer/turbine-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/ZipkinServer/zipkin-server.iml" filepath="$PROJECT_DIR$/materials/Labs/ZipkinServer/zipkin-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materials/Labs/Zuul/zuul.iml" filepath="$PROJECT_DIR$/materials/Labs/Zuul/zuul.iml" />
     </modules>
   </component>
 </project>

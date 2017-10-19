@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/materials/Labs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/AccountService" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/AuthService" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/CardService" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/ClientService" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/Common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/ConfigServer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/Dashboard" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/Eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/HistoryService" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/ProcessingService" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/TurbineServer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/ZipkinServer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/materials/Labs/Zuul" charset="UTF-8" />
+  </component>
+</project>
