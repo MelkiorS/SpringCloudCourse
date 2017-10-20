@@ -2,47 +2,48 @@ package com.luxoft.training.spring.cloud;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 public class ClientRest {
-    ClientRepository clientRepository;
-    ClientDAO clientDao;
+    @Autowired
+    private ClientDAO dao;
 
     @Autowired
-    public ClientRest(ClientRepository clientRepository, ClientDAO clientDao) {
-        this.clientRepository = clientRepository;
-        this.clientDao = clientDao;
-    }
+    private ClientRepository repo;
 
     @RequestMapping("/create")
-    public ClientEntity create(@RequestParam String name) {
-        return clientDao.create(name);
+    public Client create(@RequestParam String name) {
+        return dao.create(name);
     }
 
     @RequestMapping("/update/{id}")
-    @ResponseBody
-    public HttpStatus update(@PathVariable Integer id, @RequestParam String name) {
-        if (clientDao.update(id, name)) {
-            return HttpStatus.OK;
+    public ResponseEntity update(@PathVariable Integer id, @RequestParam String name) {
+        if (dao.update(id, name)) {
+            return new ResponseEntity(HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return HttpStatus.NOT_FOUND;
     }
 
     @RequestMapping("/delete/{id}")
-    public void delete(@PathVariable Integer id){
-        clientRepository.delete(id);
+    public void delete(@PathVariable Integer id) {
+        repo.delete(id);
     }
 
     @RequestMapping("/get")
-    public List<ClientEntity> get(){
-        return clientRepository.findAll();
+    public List<? extends Client> get() {
+        return repo.findAll();
     }
 
     @RequestMapping("/get/{id}")
-    public ClientEntity get(@PathVariable Integer id){
-        return clientRepository.findOne(id);
+    public Client get(@PathVariable Integer id) {
+        return repo.findOne(id);
     }
 }

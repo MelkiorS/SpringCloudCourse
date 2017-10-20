@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CardRest {
     @Autowired
-    CardNumberGenerator cardNumberGenerator;
+    private CardNumberGenerator generator;
 
-    @RequestMapping("/create")
-    public String create(){
-        return cardNumberGenerator.generate();
+    @RequestMapping("create")
+    public String createNewCard() {
+        return generator.generate();
     }
 }

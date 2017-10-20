@@ -13,39 +13,43 @@ import java.util.Map;
 
 @RestController
 public class ProcessingRest {
-    ProcessingRepository processingRepository;
-    AccountServiceClient accountServiceClient;
-    CardServiceClient cardServiceClient;
+    @Autowired
+    private ProcessingRepository repo;
 
     @Autowired
-    public ProcessingRest(ProcessingRepository processingRepository, AccountServiceClient accountServiceClient, CardServiceClient cardServiceClient) {
-        this.processingRepository = processingRepository;
-        this.accountServiceClient = accountServiceClient;
-        this.cardServiceClient = cardServiceClient;
-    }
+    private AccountServiceClient accountServiceClient;
+
+    @Autowired
+    private CardServiceClient cardServiceClient;
 
     @RequestMapping("/issue/{accountId}")
-    public ProcessingEntity issue(@PathVariable Integer accountId) {
-        String card = cardServiceClient.create();
-        ProcessingEntity processingEntity = new ProcessingEntity();
-        processingEntity.setAccountId(accountId);
-        processingEntity.setCard(card);
-        return processingRepository.save(processingEntity);
+    public String issueNewCard(@PathVariable Integer accountId) {
+        final String card = cardServiceClient.createCard();
+        if (card == null) {
+            return "CARD_SERVICE_NOT_AVAILABLE";
+        }
+        ProcessingEntity pe = new ProcessingEntity();
+        pe.setCard(card);
+        pe.setAccountId(accountId);
+        repo.save(pe);
+        return card;
     }
 
     @RequestMapping("/checkout/{card}")
-    public Boolean checkout(@PathVariable String card, @RequestParam BigDecimal sum){
-        ProcessingEntity entity = processingRepository.findByCard(card);
-        if(null == entity) return false;
-         return accountServiceClient.checkout(entity.getId(), sum);
+    public boolean checkout(@PathVariable String card, @RequestParam BigDecimal sum) {
+        ProcessingEntity pe = repo.findByCard(card);
+        if (pe == null) {
+            return false;
+        }
+        return accountServiceClient.checkout(pe.getAccountId(), sum);
     }
 
     @RequestMapping("/get")
-    public Map<Integer,String> get(@RequestParam List<Integer> accountIdList){
-       List<ProcessingEntity> entities = processingRepository.findByAccountIdIn(accountIdList);
-        final Map<Integer,String> map = new HashMap<Integer, String>();
-        for(ProcessingEntity e: entities){
-                map.put(e.getId(),e.getCard());
+    public Map<Integer, String> getByAccount(@RequestParam("account_id") List<Integer> accountIdList) {
+        List<ProcessingEntity> list = repo.findByAccountIdIn(accountIdList);
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        for (ProcessingEntity pe: list) {
+            map.put(pe.getAccountId(), pe.getCard());
         }
         return map;
     }

@@ -11,33 +11,29 @@ import java.util.List;
 
 @RestController
 public class AccountRest {
-    AccountDAO accountDAO;
-    AccountRepository accountRepository;
+    @Autowired
+    private AccountDAO dao;
 
     @Autowired
-    public AccountRest(AccountDAO accountDAO, AccountRepository accountRepository) {
-        this.accountDAO = accountDAO;
-        this.accountRepository = accountRepository;
-    }
+    private AccountRepository repo;
 
     @RequestMapping("/create")
-    public void create(@RequestParam Integer id){
-        accountDAO.create(id);
+    public void create(@RequestParam("client_id") Integer clientId) {
+        dao.create(clientId);
     }
 
     @RequestMapping("/fund/{id}")
-    public boolean fund(@PathVariable Integer id, @RequestParam BigDecimal sum){
-        return accountDAO.addBalance(id, sum.abs());
+    public boolean fund(@PathVariable Integer id, @RequestParam BigDecimal sum) {
+        return dao.addBalance(id, sum.abs());
     }
 
     @RequestMapping("/checkout/{id}")
-    public Boolean checkout(@PathVariable Integer id, @RequestParam BigDecimal sum){
-        return accountDAO.addBalance(id,sum.abs().negate());
+    public boolean checkout(@PathVariable Integer id, @RequestParam BigDecimal sum) {
+        return dao.addBalance(id, sum.abs().negate());
     }
 
     @RequestMapping("/get/{clientId}")
-    public List<AccountEntity> get(@PathVariable Integer clientId){
-        return accountRepository.findByClientId(clientId);
-
+    public List<? extends Account> getByClient(@PathVariable Integer clientId) {
+        return repo.findByClientId(clientId);
     }
 }
