@@ -11,5 +11,5 @@ import java.math.BigDecimal;
 public interface AccountServiceClient {
 
     @RequestMapping("/checkout/{id}")
-    Boolean accountCheckout(@PathVariable Integer id, @RequestParam BigDecimal sum);
+    Boolean checkout(@PathVariable("id") Integer id, @RequestParam("sum") BigDecimal sum);
 }

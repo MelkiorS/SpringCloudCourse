@@ -37,14 +37,16 @@ public class ProcessingRest {
     public Boolean checkout(@PathVariable String card, @RequestParam BigDecimal sum){
         ProcessingEntity entity = processingRepository.findByCard(card);
         if(null == entity) return false;
-         return accountServiceClient.accountCheckout(entity.getId(), sum);
+         return accountServiceClient.checkout(entity.getId(), sum);
     }
 
     @RequestMapping("/get")
     public Map<Integer,String> get(@RequestParam List<Integer> accountIdList){
        List<ProcessingEntity> entities = processingRepository.findByAccountIdIn(accountIdList);
         final Map<Integer,String> map = new HashMap<Integer, String>();
-        entities.forEach(e -> map.put(1,""));
-
+        for(ProcessingEntity e: entities){
+                map.put(e.getId(),e.getCard());
+        }
+        return map;
     }
 }
